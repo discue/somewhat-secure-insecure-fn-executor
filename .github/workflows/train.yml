@@ -1,10 +1,6 @@
-name: tests
+name: train
 on:
   push:
-    branches-ignore:
-      - deploy
-    tags-ignore:
-      - "*"
 
 jobs:
   build:
