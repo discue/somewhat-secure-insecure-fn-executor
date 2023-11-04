@@ -1,3 +1,7 @@
+model/training
+model/test
+model/export
+
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
