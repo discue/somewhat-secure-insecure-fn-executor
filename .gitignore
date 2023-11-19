@@ -2,6 +2,10 @@ model/training
 model/test
 model/export
 
+python-model/training
+python-model/test
+python-model/export
+
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
