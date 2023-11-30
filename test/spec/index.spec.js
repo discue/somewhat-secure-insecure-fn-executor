@@ -20,9 +20,19 @@ describe('FunctionExecutor', () => {
         expect(result).to.equal(2)
     })
 
+    it('returns no error after succesful execution', async () => {
+        const { error } = await run('return 1+1')
+        expect(error).to.be.undefined
+    })
+
     it('throws if the return value is a function', async () => {
         const { error } = await run('return Date.now')
         expect(error.message).to.equal('Function result must not be of type "function"')
+    })
+
+    it('returns no result after error', async () => {
+        const { result } = await run('return Date.now')
+        expect(result).to.be.undefined
     })
 
     it('throws if the response is a function', async () => {
