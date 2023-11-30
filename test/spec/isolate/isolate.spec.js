@@ -24,6 +24,28 @@ describe('Isolate', () => {
             expect(existingVarsLength).to.equal(0)
             isolate.dispose()
         })
+        it('knows about js data object types', async () => {
+            const { context, isolate } = await createNewIsolatedContext()
+            const fn = `
+                   const vars = ["Object", "Boolean", "Number", "BigInt", "String", "Symbol"]
+                   const existingVars = vars.filter((v) => global[v])
+                   return existingVars.length
+                `
+            const existingVarsLength = await callFunctionWithArguments(context, fn)
+            expect(existingVarsLength).to.equal(6)
+            isolate.dispose()
+        })
+        it('knows about js object types', async () => {
+            const { context, isolate } = await createNewIsolatedContext()
+            const fn = `
+                   const vars = ["Date", "Math", "RegExp", "Array", "Function", "Error"]
+                   const existingVars = vars.filter((v) => global[v])
+                   return existingVars.length
+                `
+            const existingVarsLength = await callFunctionWithArguments(context, fn)
+            expect(existingVarsLength).to.equal(6)
+            isolate.dispose()
+        })
     })
     describe('.runWithIsolatedContext', () => {
         it('calls callback with context and isolated', async () => {
