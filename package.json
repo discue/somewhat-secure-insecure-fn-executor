@@ -29,7 +29,7 @@
   "devDependencies": {
     "@jswork/next-jjencode": "^1.0.0",
     "chai": "^4.3.10",
-    "eslint": "^8.52.0",
+    "eslint": "^8.54.0",
     "javascript-obfuscator": "^4.1.0",
     "jencrypt": "^1.0.0",
     "js-confuser": "^1.7.1",
