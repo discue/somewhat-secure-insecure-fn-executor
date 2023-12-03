@@ -7,7 +7,7 @@ describe('WrapScript', () => {
 
     it('wraps given script in function', () => {
         const script = wrapScript('console.log("hello world")')
-        expect(script.startsWith('function thisIsYourAdapterFn({ args }) {')).to.equal(true)
+        expect(script.startsWith('function thisIsYourAdapterFn(params) {')).to.equal(true)
     })
     it('includes given script', () => {
         const script = wrapScript('console.log("hello world")')
