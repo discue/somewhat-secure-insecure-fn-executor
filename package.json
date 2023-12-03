@@ -27,19 +27,10 @@
     "isolated-vm": "^4.6.0"
   },
   "devDependencies": {
-    "@jswork/next-jjencode": "^1.0.0",
     "chai": "^4.3.10",
     "eslint": "^8.52.0",
-    "javascript-obfuscator": "^4.1.0",
-    "jencrypt": "^1.0.0",
-    "js-confuser": "^1.7.1",
-    "jsfuck": "^0.4.0",
-    "ml-classify-text": "^2.0.1",
     "mocha": "^10.2.0",
     "nodemon": "^3.0.1",
-    "nyc": "^15.1.0",
-    "sake-js": "^1.1.5",
-    "uglify-js": "^3.17.4",
-    "whichx": "^3.0.1"
+    "nyc": "^15.1.0"
   }
 }
