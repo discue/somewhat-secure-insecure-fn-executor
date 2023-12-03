@@ -85,11 +85,25 @@ describe('FunctionExecutor', () => {
         expect(result).to.be.undefined
         expect(error.message).to.equal("Cannot add property a, object is not extensible")
     })
-    
+
     it('returns an error if global vars get changed', async () => {
         const { result, error } = await run('global["String"].a="a"; return global["String"].a', { a: 1, b: 3 })
         expect(result).to.be.undefined
         expect(error.message).to.equal("Cannot add property a, object is not extensible")
+    })
+
+    it('sets line number 1 correctly in stack trace', async () => {
+        const { result, error } = await run('global["String"].a="a"; return global["String"].a', { a: 1, b: 3 })
+        expect(result).to.be.undefined
+        expect(error.stack).to.contain("file:///user-supplied-script.js:1:19")
+    })
+
+    it('sets line number 2 correctly in stack trace', async () => {
+        const { result, error } = await run(`
+        global["String"].a="a"; return global["String"].a
+        `, { a: 1, b: 3 })
+        expect(result).to.be.undefined
+        expect(error.stack).to.contain("file:///user-supplied-script.js:2:27")
     })
 
     vars.forEach((globalVar) => {
