@@ -25,13 +25,30 @@
 What it **does**, is to run untrusted code in an isolated environment with a minimum set of APIs to reduce the attack surface.
 
 **Generally:** You should not run untrusted code anywhere.
+
+And if you have to to? Make sure you cover the untrusted code sandbox on various levels:
+- Allow only certain functions to be executed
+- Disable code generation via e.g. `eval` and `new Function()`
+- Do not run code that was was obfuscated
+- Run the sandbox with smallest possible set of permissions
+- Run the container of the sandbox with smallest possible set of permissions
+- Run the smallest number of services in the same account as the sandbox
+- more.. :)
+
 ## Installation
 ```bash
 npm install @discue/somewhat-secure-insecure-fn-executor
 ```
 
-## Run tests
+## Example
+```js
+const executor = require('@discue/somewhat-secure-insecure-fn-executor')
 
+const { result } = await executor('return 1+1')
+console.log(result) // 2
+```
+
+## Run tests
 To run tests, run the following command
 
 ```bash
