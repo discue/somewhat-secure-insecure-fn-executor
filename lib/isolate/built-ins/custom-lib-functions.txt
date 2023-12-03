@@ -1,0 +1,5 @@
+atob
+btoa
+isObject
+isPromise
+isArray
