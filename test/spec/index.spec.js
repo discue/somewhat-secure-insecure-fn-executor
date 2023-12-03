@@ -3,6 +3,8 @@
 const run = require('../../lib/index.js')
 const { expect } = require('chai')
 
+const globals = require('./isolate/built-ints/get-globals-list.js')
+
 const allowedPrimitives = ['NaN', 'undefined']
 const allowedArrayTypes = ['BigUint64Array', 'BigInt64Array', 'Uint8Array', 'Int8Array', 'Uint16Array', 'Int16Array', 'Uint32Array', 'Int32Array', 'Float32Array', 'Float64Array', 'Uint8ClampedArray']
 const allowedTypes = ['BigInt', 'DataView', 'Map', 'Set', 'WeakMap', 'WeakSet', 'Proxy', 'Reflect', 'WeakRef', 'Object', 'Function', 'Array', 'Number', 'Infinity', 'Boolean', 'String', 'Symbol',]
@@ -106,7 +108,31 @@ describe('FunctionExecutor', () => {
         expect(error.stack).to.contain("file:///user-supplied-script.js:2:27")
     })
 
-    vars.forEach((globalVar) => {
+    it('has no globals that can be changed', async () => {
+        const { result, error } = await run(`
+        global["String"].a="a"; return global["String"].a
+        `, { a: 1, b: 3 })
+        expect(result).to.be.undefined
+        expect(error.stack).to.contain("file:///user-supplied-script.js:2:27")
+    })
+    it('sets line number 2 correctly in stack trace', async () => {
+        const { result, error } = await run(`
+        global["String"].a="a"; return global["String"].a
+        `, { a: 1, b: 3 })
+        expect(result).to.be.undefined
+        expect(error.stack).to.contain("file:///user-supplied-script.js:2:27")
+    })
+
+    it('is aware of all v8 globals', async () => {
+        const ignoredValues = ['global', 'globalThis', 'undefined', 'NaN', 'Infinity', 'console']
+        let { result } = await run(`
+        return Object.getOwnPropertyNames(global)
+        `)
+        result = result.filter(res => !ignoredValues.includes(res))
+        expect(result.sort()).to.deep.equal(globals.sort())
+    })
+
+    vars.sort().forEach((globalVar) => {
         it(`does not allow accessing ${globalVar}`, async () => {
             const { error } = await run(`return ${globalVar}`)
             expect(error.message).to.equal(`${globalVar} is not defined`)

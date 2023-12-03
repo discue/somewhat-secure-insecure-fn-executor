@@ -2,3 +2,5 @@ Object
 Function
 Boolean
 Symbol
+RegExp
+Promise

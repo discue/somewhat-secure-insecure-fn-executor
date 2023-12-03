@@ -3,3 +3,4 @@ btoa
 isObject
 isPromise
 isArray
+thisIsYourAdapterFn

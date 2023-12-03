@@ -3,4 +3,3 @@ BigInt
 Math
 Date
 String
-Promise
