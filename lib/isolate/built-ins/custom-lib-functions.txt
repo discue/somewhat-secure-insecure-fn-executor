@@ -3,4 +3,4 @@ btoa
 isObject
 isPromise
 isArray
-thisIsYourAdapterFn
+userProvidedFunction
