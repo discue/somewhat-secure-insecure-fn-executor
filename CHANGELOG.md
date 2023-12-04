@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/discue/somewhat-secure-insecure-fn-executor/compare/v0.1.0...v0.2.0) (2023-12-04)
+
+
+### Features
+
+* remove whitespace before stack trace lines ([4507068](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/4507068fa34bc09e956b9402dfad2331474f0271))
+
+
+### Bug Fixes
+
+* args must be provided as array to internals ([c079ba9](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/c079ba9dd0fe14716f860c7b3119a0ed7d0c3e84))
+
+
+### Chores
+
+* document nodejs globals are not available ([d6cb201](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/d6cb201e80a56c64b2d97f30cf56414c9583eb75))
+* update mocha command to run tests recursively ([23990e1](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/23990e1dc171c3df5e75489ece39b3ab471b303a))
+
 ## 0.1.0 (2023-12-04)
 
 
