@@ -118,6 +118,33 @@ const result = await executor('return args.a + args.b', { a: 1, b: 3 })
 // }
 ```
 
+### Node globals are not available
+The user provided scripts are executed in a dedicated v8 environment. NodeJS globals are not available in this context. 
+
+```js
+const executor = require('@discue/somewhat-secure-insecure-fn-executor')
+const result = await executor('process.exit(0)')
+// {
+//   "logs": {
+//     "log": [],
+//     "error": [
+//       "ReferenceError: process is not defined"
+//     ],
+//     "warn": [],
+//     "info": []
+//   },
+//   "error": {
+//     "message": "process is not defined",
+//     "stack": [
+//       "ReferenceError: process is not defined",
+//       "    at userSuppliedScript (file:///user-supplied-script.js:1:1)",
+//       "    at runtime.js:38:24"
+//     ]
+//   },
+//   "durationMillis": 1
+// }
+```
+
 ### Error handling
 Any exceptions occuring during script execution are captured and returned to the caller. The `error` object contains details of the exception like `cause`, `code`, `message`, and `stack`.
 ```js
