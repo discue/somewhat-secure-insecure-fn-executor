@@ -184,6 +184,14 @@ describe('FunctionExecutor', () => {
         expect(error.message).to.equal('"Function" is not allowed in this context.')
     })
 
+    it('returns on compilation error', async () => {
+        const { result, error } = await run(`
+throw new Error(&apos;now&apos;)
+`)
+        expect(result).to.be.undefined
+        expect(error.message).to.equal("Unexpected token '&' [file:///user-supplied-script.js:2:17]")
+    })
+
     vars.sort().forEach((globalVar) => {
         it(`does not allow accessing ${globalVar}`, async () => {
             const { error } = await run(`return ${globalVar}`)
