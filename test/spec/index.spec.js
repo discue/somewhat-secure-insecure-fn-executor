@@ -115,12 +115,12 @@ describe('FunctionExecutor', () => {
         expect(result).to.be.undefined
         expect(error.stack).to.contain("file:///user-supplied-script.js:2:27")
     })
-    it.only('sets line number 2 correctly in stack trace', async () => {
-        const result = await run(`
-        eval(1+1)
+    it('sets line number 2 correctly in stack trace', async () => {
+        const { result, error } = await run(`
+        global["String"].a="a"; return global["String"].a
         `, { a: 1, b: 3 })
-        // expect(result).to.be.undefined
-        console.log(JSON.stringify(result, null, 2))
+        expect(result).to.be.undefined
+        expect(error.stack).to.contain("file:///user-supplied-script.js:2:27")
     })
 
     it('is aware of all v8 globals', async () => {
@@ -148,7 +148,7 @@ describe('FunctionExecutor', () => {
         expect(result).to.be.undefined
         expect(error.message).to.equal("Cannot assign to read only property 'compile' of object '#<Object>'")
     })
-
+    
     it('does not allow execution of eval', async () => {
         let { result, error } = await run(`
         eval(1+1)
