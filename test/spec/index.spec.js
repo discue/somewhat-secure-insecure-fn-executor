@@ -97,7 +97,7 @@ describe('FunctionExecutor', () => {
     it('sets line number 1 correctly in stack trace', async () => {
         const { result, error } = await run('global["String"].a="a"; return global["String"].a', { a: 1, b: 3 })
         expect(result).to.be.undefined
-        expect(error.stack).to.contain("file:///user-supplied-script.js:1:19")
+        expect(error.stack).to.include("    at userSuppliedScript (file:///user-supplied-script.js:1:19)")
     })
 
     it('sets line number 2 correctly in stack trace', async () => {
@@ -105,7 +105,7 @@ describe('FunctionExecutor', () => {
         global["String"].a="a"; return global["String"].a
         `, { a: 1, b: 3 })
         expect(result).to.be.undefined
-        expect(error.stack).to.contain("file:///user-supplied-script.js:2:27")
+        expect(error.stack).to.include("    at userSuppliedScript (file:///user-supplied-script.js:2:27)")
     })
 
     it('has no globals that can be changed', async () => {
@@ -113,14 +113,14 @@ describe('FunctionExecutor', () => {
         global["String"].a="a"; return global["String"].a
         `, { a: 1, b: 3 })
         expect(result).to.be.undefined
-        expect(error.stack).to.contain("file:///user-supplied-script.js:2:27")
+        expect(error.stack).to.include("    at userSuppliedScript (file:///user-supplied-script.js:2:27)")
     })
     it('sets line number 2 correctly in stack trace', async () => {
         const { result, error } = await run(`
         global["String"].a="a"; return global["String"].a
         `, { a: 1, b: 3 })
         expect(result).to.be.undefined
-        expect(error.stack).to.contain("file:///user-supplied-script.js:2:27")
+        expect(error.stack).to.include("    at userSuppliedScript (file:///user-supplied-script.js:2:27)")
     })
 
     it('is aware of all v8 globals', async () => {
