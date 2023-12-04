@@ -7,7 +7,7 @@ describe('WrapScript', () => {
 
     it('wraps given script in function', () => {
         const script = wrapScript('console.log("hello world")')
-        expect(script.includes('function userProvidedFunction(params) {')).to.equal(true)
+        expect(script.includes('function userSuppliedScript(params) {')).to.equal(true)
     })
     it('includes given script', () => {
         const script = wrapScript('console.log("hello world")')
