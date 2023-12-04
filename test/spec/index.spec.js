@@ -108,13 +108,12 @@ describe('FunctionExecutor', () => {
         expect(error.stack).to.include("    at userSuppliedScript (file:///user-supplied-script.js:2:27)")
     })
 
-    it('has no globals that can be changed', async () => {
-        const { result, error } = await run(`
-        global["String"].a="a"; return global["String"].a
-        `, { a: 1, b: 3 })
+    it('does not provide NodeJS globals like process', async () => {
+        const {result, error} = await run(`process.exit(0)`)
         expect(result).to.be.undefined
-        expect(error.stack).to.include("    at userSuppliedScript (file:///user-supplied-script.js:2:27)")
+        expect(error.message).to.equal('process is not defined')
     })
+
     it('sets line number 2 correctly in stack trace', async () => {
         const { result, error } = await run(`
         global["String"].a="a"; return global["String"].a
@@ -148,7 +147,7 @@ describe('FunctionExecutor', () => {
         expect(result).to.be.undefined
         expect(error.message).to.equal("Cannot assign to read only property 'compile' of object '#<Object>'")
     })
-    
+
     it('does not allow execution of eval', async () => {
         let { result, error } = await run(`
         eval(1+1)
