@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/discue/somewhat-secure-insecure-fn-executor/compare/v0.2.0...v0.3.0) (2023-12-04)
+
+
+### Bug Fixes
+
+* scripts cannot be resolved when used as module ([a262bf2](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/a262bf27bcb05f6c53236eda16074ca08e8797cc))
+
+
+### Chores
+
+* publish only lib folder and license ([cb6b5e3](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/cb6b5e38abfc7fb48f894382f23ff824f2167267))
+
 ## [0.2.0](https://github.com/discue/somewhat-secure-insecure-fn-executor/compare/v0.1.0...v0.2.0) (2023-12-04)
 
 
