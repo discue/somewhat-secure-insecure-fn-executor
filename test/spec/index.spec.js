@@ -97,7 +97,7 @@ describe('FunctionExecutor', () => {
     it('sets line number 1 correctly in stack trace', async () => {
         const { result, error } = await run('global["String"].a="a"; return global["String"].a', { a: 1, b: 3 })
         expect(result).to.be.undefined
-        expect(error.stack).to.include("    at userSuppliedScript (file:///user-supplied-script.js:1:19)")
+        expect(error.stack).to.include("at userSuppliedScript (file:///user-supplied-script.js:1:19)")
     })
 
     it('sets line number 2 correctly in stack trace', async () => {
@@ -105,11 +105,11 @@ describe('FunctionExecutor', () => {
         global["String"].a="a"; return global["String"].a
         `, { a: 1, b: 3 })
         expect(result).to.be.undefined
-        expect(error.stack).to.include("    at userSuppliedScript (file:///user-supplied-script.js:2:27)")
+        expect(error.stack).to.include("at userSuppliedScript (file:///user-supplied-script.js:2:27)")
     })
 
     it('does not provide NodeJS globals like process', async () => {
-        const {result, error} = await run(`process.exit(0)`)
+        const { result, error } = await run(`process.exit(0)`)
         expect(result).to.be.undefined
         expect(error.message).to.equal('process is not defined')
     })
@@ -119,7 +119,7 @@ describe('FunctionExecutor', () => {
         global["String"].a="a"; return global["String"].a
         `, { a: 1, b: 3 })
         expect(result).to.be.undefined
-        expect(error.stack).to.include("    at userSuppliedScript (file:///user-supplied-script.js:2:27)")
+        expect(error.stack).to.include("at userSuppliedScript (file:///user-supplied-script.js:2:27)")
     })
 
     it('is aware of all v8 globals', async () => {
@@ -149,9 +149,11 @@ describe('FunctionExecutor', () => {
     })
 
     it('does not allow execution of eval', async () => {
-        let { result, error } = await run(`
+        let res;
+        let { result, error } = res = await run(`
         eval(1+1)
         `)
+        console.log(JSON.stringify(res, null, 2))
         expect(result).to.be.undefined
         expect(error.message).to.equal('"eval" is not allowed in this context.')
     })

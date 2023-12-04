@@ -137,8 +137,8 @@ const result = await executor('process.exit(0)')
 //     "message": "process is not defined",
 //     "stack": [
 //       "ReferenceError: process is not defined",
-//       "    at userSuppliedScript (file:///user-supplied-script.js:1:1)",
-//       "    at runtime.js:38:24"
+//       "at userSuppliedScript (file:///user-supplied-script.js:1:1)",
+//       "at runtime.js:38:24"
 //     ]
 //   },
 //   "durationMillis": 1
@@ -165,9 +165,9 @@ eval(1+1)
 //     "message": "\"eval\" is not allowed in this context.",
 //     "stack": [
 //       "Error: \"eval\" is not allowed in this context.",
-//       "    at global.<computed> (file:///code-generation.js:1:19)",
-//       "    at userSuppliedScript (file:///user-supplied-script.js:2:9)",
-//       "    at runtime.js:38:24"
+//       "at global.<computed> (file:///code-generation.js:1:19)",
+//       "at userSuppliedScript (file:///user-supplied-script.js:2:9)",
+//       "at runtime.js:38:24"
 //     ]
 //   },
 //   "durationMillis": 0
