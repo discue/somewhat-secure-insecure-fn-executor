@@ -4,6 +4,10 @@
   "description": "Tries to isolate execution of untrusted code",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "LICENSE"
+  ],
   "scripts": {
     "test": "mocha --recursive --check-leaks  --timeout 5000 --file test/global-mocha-setup.js",
     "coverage": "nyc mocha --check-leaks  --timeout 5000 --file test/global-mocha-setup.js",
