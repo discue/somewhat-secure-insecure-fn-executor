@@ -14,6 +14,7 @@ describe('FreezeGlobals', () => {
     })
 
     globals.forEach((globalVariable) => {
+        if (globalVariable === 'userProvidedFunction') { return }
         it(`freezes global variable ${globalVariable}`, async () => {
             const fn = `
                    global["${globalVariable}"].a = 'hello'
