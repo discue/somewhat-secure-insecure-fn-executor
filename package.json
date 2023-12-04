@@ -1,6 +1,6 @@
 {
   "name": "@discue/somewhat-secure-insecure-fn-executor",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Tries to isolate execution of untrusted code",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
