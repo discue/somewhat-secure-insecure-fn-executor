@@ -11,7 +11,7 @@
   "scripts": {
     "test": "mocha --recursive --check-leaks  --timeout 5000 --file test/global-mocha-setup.js",
     "coverage": "nyc mocha --check-leaks  --timeout 5000 --file test/global-mocha-setup.js",
-    "lint": "eslint -c .eslintrc.json lib",
+    "lint": "eslint -c .eslintrc.js lib",
     "push-incl-tags": "git push --follow-tags origin main",
     "publish-npm": "npm publish --access public",
     "remove-types": "find lib -name \"*.d.ts\" -type f -delete",
@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "chai": "^4.3.10",
-    "eslint": "^8.57.0",
+    "eslint": "^9.0.0",
     "mocha": "^10.4.0",
     "nodemon": "^3.1.0",
     "nyc": "^15.1.0",
