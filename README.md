@@ -1,6 +1,6 @@
 
 <p align="center">
-<a href="https://www.discue.io/" target="_blank" rel="noopener noreferrer"><img width="128" src="https://www.discue.io/icons-fire-no-badge-square/web/icon-192.png" alt="Vue logo">
+<a href="https://www.discue.io/" target="_blank" rel="noopener noreferrer"><img width="128" src="https://www.discue.io/icons-fire-no-badge-square/web/icon-192.png" alt="discue.io logo">
 </a>
 </p>
 
@@ -15,24 +15,27 @@
 [![NPM Downloads](https://img.shields.io/npm/dm/@discue/somewhat-secure-insecure-fn-executor.svg)](https://www.npmjs.com/package/@discue/somewhat-secure-insecure-fn-executor)
 <br/>
 [![contributions - welcome](https://img.shields.io/badge/contributions-welcome-blue)](/CONTRIBUTING.md "Go to contributions doc")
-[![Made with Node.js](https://img.shields.io/badge/Node.js->=18-blue?logo=node.js&logoColor=white)](https://nodejs.org "Go to Node.js homepage")
+[![Made with Node.js](https://img.shields.io/badge/Node.js->=20-blue?logo=node.js&logoColor=white)](https://nodejs.org "Go to Node.js homepage")
 
 </div>
 
 # somewhat-secure-insecure-fn-executor
-**Don't let the funny title fool you**. There was definitely not enough testing to make sure this library can provide significant security for running untrusted code. 
-
-What it **does**, is to run untrusted code in an isolated environment with a minimum set of APIs to reduce the attack surface.
+**Don't let the funny title fool you**. There was definitely not enough testing to make sure this library can provide significant security for running untrusted code. What it **does** is to run untrusted code in an isolated environment with a minimum set of APIs to reduce the attack surface.
 
 **Generally:** You should not run untrusted code anywhere.
 
-And if you have to to? Make sure you cover the untrusted code sandbox on various levels:
-- Allow only certain functions to be executed
-- Disable code generation via e.g. `eval` and `new Function()`
-- Do not run code that was was obfuscated
-- Run the sandbox with smallest possible set of permissions
-- Run the container of the sandbox with smallest possible set of permissions
-- Run the smallest number of services in the same account as the sandbox
+And if you have to? Make sure you mitigate the risks on various levels:
+
+**Mitigations provided by this module:**
+- ✅ Allow only certain functions to be executed
+- ✅ Disable code generation via e.g. `eval` and `new Function()`
+- ✅ Limit access to I/O APIs like filesystem, socket, and http
+
+**Mitigations out-of-scope for this module:**
+- ❌ Do not run code that was was obfuscated
+- ❌ Run the sandbox with smallest possible set of permissions
+- ❌ Run the container of the sandbox with smallest possible set of permissions
+- ❌ Run the smallest number of services in the same account as the sandbox
 - more.. :)
 
 ## Installation
@@ -43,7 +46,7 @@ npm install @discue/somewhat-secure-insecure-fn-executor
 ## Constraints
 - Execution of `eval()`, `Function()`, `new Function()`, and `WebAssembly.*` is not allowed.
 - Return values of scripts must be `Primitives`, or `Objects`. `Functions`, `Symbols` and others are not allowed.
-- Each script runs in a dedicated environment. The environment is never shared.
+- Each script runs in a dedicated environment. The environment is never shared. The script environment will be destroyed after execution.
 - Built-in global variables cannot be changed.
 
 ## API
@@ -59,16 +62,9 @@ The return value is an object with the following properties:
 
 ```js
 /**
- * @param {string} script the script to run
- * @param {object} args arguments to pass to the script
- * @returns {ExecutionResult}
- */
-const executor = require('@discue/somewhat-secure-insecure-fn-executor')
-
-/**
  * @typedef ExecutionResult
  * @property {any} [result] the return value of the given script
- * @property {Object<String, Array>} logs the logs captured during script execution
+ * @property {Object<String, Array>} [logs] the logs captured during script execution
  * @property {number} durationMillis duration of the script execution in milliseconds
  * @property {ExecutionError} [error] error details captured during script execution
  */
@@ -77,15 +73,22 @@ const executor = require('@discue/somewhat-secure-insecure-fn-executor')
  * @typedef ExecutionError
  * @property {string} [cause] the cause from the caputured error. May be null.
  * @property {number} [code] the code from the captured error. May be null.
- * @property {string} stack the stack trace from the captured error.
+ * @property {Array.<string>} stack the stack trace from the captured error.
  * @property {string} message the message from the captured error. 
  */
+
+/**
+ * @param {string} script the script to run
+ * @param {object} args arguments to pass to the script
+ * @returns {ExecutionResult}
+ */
+const executor = require('@discue/somewhat-secure-insecure-fn-executor')
 
 ```
 
 ## Examples
 ### Simple script execution
-Scripts will be executed in a dedicated environment independent of the main process. The return value of the script will be returned to the caller, too. 
+The executor runs the script `return 1+1` and returns the result of the calculation. 
 ```js
 const executor = require('@discue/somewhat-secure-insecure-fn-executor')
 const result = await executor('return 1+1')
@@ -102,7 +105,7 @@ const result = await executor('return 1+1')
 ```
 
 ### Execution with parameters
-To pass parameters to the script, call the executor function with an object as second parameter. The parameter object will be available as `args` for execution of your script.
+To pass parameters to the script call the executor function with an object as second parameter. The parameter object will be available as `args` for execution of your script.
 ```js
 const executor = require('@discue/somewhat-secure-insecure-fn-executor')
 const result = await executor('return args.a + args.b', { a: 1, b: 3 })
@@ -146,12 +149,10 @@ const result = await executor('process.exit(0)')
 ```
 
 ### Error handling
-Any exceptions occuring during script execution are captured and returned to the caller. The `error` object contains details of the exception like `cause`, `code`, `message`, and `stack`.
+Any exceptions occuring during script execution are captured and returned to the caller. The `error` object contains details of the exception: `cause`, `code`, `message`, and `stack`.
 ```js
 const executor = require('@discue/somewhat-secure-insecure-fn-executor')
-const result = await executor(`
-eval(1+1)
-`)
+const result = await executor('eval(1+1)')
 // {
 //   "logs": {
 //     "log": [],
@@ -176,4 +177,3 @@ eval(1+1)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
-
