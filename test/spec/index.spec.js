@@ -163,6 +163,15 @@ describe('FunctionExecutor', () => {
         expect(error.message).to.equal('"eval" is not allowed in this context.')
     })
 
+    it('does not allow execution of Worker', async () => {
+        const { result, error } = await run(`
+        const f = new Worker("")
+        return f()
+        `)
+        expect(result).to.be.undefined
+        expect(error.message).to.equal('Worker is not defined')
+    })
+
     it('does not allow execution of Function', async () => {
         const { result, error } = await run(`
         const f = Function("1+1")
