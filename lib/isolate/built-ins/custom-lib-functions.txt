@@ -3,4 +3,5 @@ btoa
 isObject
 isPromise
 isArray
+run
 userSuppliedScript
