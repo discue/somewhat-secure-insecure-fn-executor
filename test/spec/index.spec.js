@@ -125,7 +125,7 @@ describe('FunctionExecutor', () => {
     })
 
     it('is aware of all v8 globals', async () => {
-        const ignoredValues = ['global', 'globalThis', 'undefined', 'NaN', 'Infinity', 'console', 'run']
+        const ignoredValues = ['global', 'globalThis', 'undefined', 'NaN', 'Infinity', 'console']
         let { result } = await run(`
         return Object.getOwnPropertyNames(global)
         `)
