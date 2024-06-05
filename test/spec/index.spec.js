@@ -5,6 +5,7 @@ const { expect } = require('chai')
 
 const globals = require('./isolate/built-ints/get-globals-list.js')
 
+const ourOwnGlobalFunctions = ['run']
 const allowedPrimitives = ['NaN', 'undefined']
 const allowedArrayTypes = ['BigUint64Array', 'BigInt64Array', 'Uint8Array', 'Int8Array', 'Uint16Array', 'Int16Array', 'Uint32Array', 'Int32Array', 'Float32Array', 'Float64Array', 'Uint8ClampedArray']
 const allowedTypes = ['BigInt', 'DataView', 'Map', 'Set', 'WeakMap', 'WeakSet', 'Proxy', 'Reflect', 'WeakRef', 'Object', 'Function', 'Array', 'Number', 'Infinity', 'Boolean', 'String', 'Symbol',]
@@ -12,7 +13,7 @@ const allowedErrors = ['Error', 'AggregateError', 'EvalError', 'RangeError', 'Re
 const allowedVariables = ['console', 'global', 'globalThis']
 const allowedObjects = ['FinalizationRegistry', 'Math', 'JSON', 'Atomics', 'WebAssembly', 'Intl', 'SharedArrayBuffer', 'ArrayBuffer', 'Date', 'Promise', 'RegExp']
 const allowedFunctions = ['atob', 'btoa', 'encodeURI', 'encodeURIComponent', 'escape', 'unescape', 'eval', 'decodeURI', 'decodeURIComponent', 'isFinite', 'isNaN', 'parseInt', 'parseFloat']
-const allowedGlobals = [...allowedPrimitives, ...allowedErrors, ...allowedTypes, ...allowedArrayTypes, ...allowedObjects, ...allowedFunctions, ...allowedVariables]
+const allowedGlobals = [...ourOwnGlobalFunctions, ...allowedPrimitives, ...allowedErrors, ...allowedTypes, ...allowedArrayTypes, ...allowedObjects, ...allowedFunctions, ...allowedVariables]
 const vars = Object.getOwnPropertyNames(global).filter(global => !allowedGlobals.includes(global))
 
 describe('FunctionExecutor', () => {
@@ -97,6 +98,7 @@ describe('FunctionExecutor', () => {
     it('sets line number 1 correctly in stack trace', async () => {
         const { result, error } = await run('global["String"].a="a"; return global["String"].a', { a: 1, b: 3 })
         expect(result).to.be.undefined
+        console.log({ error })
         expect(error.stack).to.include("at userSuppliedScript (file:///user-supplied-script.js:1:19)")
     })
 
@@ -123,7 +125,7 @@ describe('FunctionExecutor', () => {
     })
 
     it('is aware of all v8 globals', async () => {
-        const ignoredValues = ['global', 'globalThis', 'undefined', 'NaN', 'Infinity', 'console']
+        const ignoredValues = ['global', 'globalThis', 'undefined', 'NaN', 'Infinity', 'console', 'run']
         let { result } = await run(`
         return Object.getOwnPropertyNames(global)
         `)
