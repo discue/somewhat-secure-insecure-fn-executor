@@ -1,8 +1,13 @@
 const globals = require('globals')
-const js = require("@eslint/js")
+const js = require('@eslint/js')
+const jsdoc = require('eslint-plugin-jsdoc')
 
 module.exports = [
     js.configs.recommended,
+    jsdoc.configs['flat/recommended-error'],
+    {
+        ignores: ['test', 'test-*/**'],
+    },
     {
         languageOptions: {
             ecmaVersion: 2022,
@@ -12,6 +17,9 @@ module.exports = [
             }
         },
         rules: {
+            'jsdoc/require-returns-description': 'off',
+            'jsdoc/tag-lines': 'off',
+            'jsdoc/no-defaults': 'off',
             'no-unused-vars': [
                 'error',
                 {
@@ -20,15 +28,11 @@ module.exports = [
                     caughtErrorsIgnorePattern: '^_',
                 }
             ],
-            "semi": [
-                "error",
-                "never"
-            ],
-            "quotes": [
-                "error",
-                "single",
+            'quotes': [
+                'error',
+                'single',
                 {
-                    "allowTemplateLiterals": true
+                    'allowTemplateLiterals': true
                 }
             ]
         }
