@@ -98,7 +98,6 @@ describe('FunctionExecutor', () => {
     it('sets line number correctly in stack trace', async () => {
         const { result, error } = await run('global["String"].a="a"; return global["String"].a', { a: 1, b: 3 })
         expect(result).to.be.undefined
-        console.log({ error })
         expect(error.stack).to.include("at userSuppliedScript (file:///user-supplied-script.js:6:19)")
     })
 
