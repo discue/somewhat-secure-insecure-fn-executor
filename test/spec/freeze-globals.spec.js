@@ -15,6 +15,26 @@ describe('FreezeGlobals', () => {
         return isolate.dispose()
     })
 
+    it('does not allow changing global object', async () => {
+        const fn = `
+        global.a = 'hello'
+        return global.a
+        `
+        const { result, error } = await run(fn)
+        expect(error.message).to.equal('Cannot add property a, object is not extensible')
+        expect(result).to.equal(undefined)
+    })
+
+    it('does not allow changing globalThis object', async () => {
+        const fn = `
+        globalThis.b = 'hello'
+        return globalThis.b
+        `
+        const { result, error } = await run(fn)
+        expect(error.message).to.equal('Cannot add property b, object is not extensible')
+        expect(result).to.equal(undefined)
+    })
+
     globals.forEach((globalVariable) => {
         if (globalVariable === 'userSuppliedScript') { return }
         it(`does not allow changing global.${globalVariable}`, async () => {
