@@ -17,10 +17,22 @@ describe('FreezeGlobals', () => {
 
     globals.forEach((globalVariable) => {
         if (globalVariable === 'userSuppliedScript') { return }
-        it(`does not freeze global variable ${globalVariable} by default`, async () => {
+        it(`does not allow changing global.${globalVariable}`, async () => {
             const fn = `
             global["${globalVariable}"].a = 'hello'
             return global["${globalVariable}"].a
+            `
+            const { result } = await run(fn)
+            expect(result).to.equal(undefined)
+        })
+    })
+
+    globals.forEach((globalVariable) => {
+        if (globalVariable === 'userSuppliedScript') { return }
+        it(`does not allow changing globalThis.${globalVariable}`, async () => {
+            const fn = `
+            globalThis["${globalVariable}"].a = 'hello'
+            return globalThis["${globalVariable}"].a
             `
             const { result } = await run(fn)
             expect(result).to.equal(undefined)
