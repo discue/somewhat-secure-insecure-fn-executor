@@ -21,6 +21,15 @@ describe('FunctionExecutor', () => {
     it('executes a simple script', async () => {
         const { result } = await run('return 1+1')
         expect(result).to.equal(2)
+    });
+
+    (["error", "info", "log", "warn"]).forEach((key) => {
+        it(`captures messages passed to console[${key}]`, async () => {
+            const result = await run(`console["${key}"]("hello");console["${key}"]("hi")`)
+            console.log({ result })
+            expect(result.logs[key]).to.have.length(2)
+            expect(result.logs[key]).to.deep.equal(['hello', 'hi'])
+        })
     })
 
     it('returns no error after succesful execution', async () => {
