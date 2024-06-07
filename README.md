@@ -30,6 +30,7 @@ And if you have to? Make sure you mitigate the risks on various levels:
 - ✅ Allow only certain functions to be executed
 - ✅ Disable code generation via e.g. `eval` and `new Function()`
 - ✅ Limit access to I/O APIs like filesystem, socket, and http
+- ✅ Ensure global variables are immutable
 
 **Mitigations out-of-scope for this module:**
 - ❌ Do not run code that was was obfuscated
@@ -46,7 +47,6 @@ npm install @discue/somewhat-secure-insecure-fn-executor
 ## Constraints
 - Execution of `eval()`, `Function()`, `new Function()`, and `WebAssembly.*` is not allowed.
 - Return values of scripts must be `Primitives`, or `Objects`. `Functions`, `Symbols` and others are not allowed.
-- Each script runs in a dedicated environment. The environment is never shared. The script environment will be destroyed after execution.
 - Built-in global variables cannot be changed.
 
 ## API
