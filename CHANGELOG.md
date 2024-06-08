@@ -2,6 +2,60 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/discue/somewhat-secure-insecure-fn-executor/compare/v0.3.0...v0.4.0) (2024-06-08)
+
+
+### Features
+
+* catch compilation errors ([11675a3](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/11675a3cc3eef730661ea5674161d3e1b7bfe0e3))
+* **script-runner:** add methods to only compile scripts ([aba8efe](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/aba8efedd9c52369d712e9728a9231805c1ebd6e))
+
+
+### Chores
+
+* add eslint comments when creating freeze-globals script ([6de6bf1](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/6de6bf142f4b7fdb2b116c5627ebfa3b1a2938aa))
+* add run fn to custom lib functions ([aa72a3c](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/aa72a3c3fb6b9750f78436fe402ea2f73fedf7a5))
+* **deps-dev:** bump eslint from 8.55.0 to 8.56.0 ([3082be7](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/3082be75aa1e4c0d21ec4c033814e936ab6d943b))
+* **deps-dev:** bump eslint from 8.56.0 to 8.57.0 ([22f801e](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/22f801e6022eac8ccaa6a54e5a41b83f2c2a880d))
+* **deps-dev:** bump mocha from 10.2.0 to 10.3.0 ([a48286e](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/a48286e5d0a00fd8e19d264345051423dfa962d7))
+* **deps-dev:** bump mocha from 10.3.0 to 10.4.0 ([4cce4d2](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/4cce4d2aef3457790a5d8203499bf452f616e342))
+* **deps-dev:** bump nodemon from 3.0.1 to 3.0.2 ([80382be](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/80382be629492a39d25ed11faab8373bbf60663e))
+* **deps-dev:** bump nodemon from 3.0.2 to 3.0.3 ([5b87814](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/5b87814a8664470d248b902e908932d37180bffe))
+* **deps-dev:** bump nodemon from 3.0.3 to 3.1.0 ([ba0fc8b](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/ba0fc8bbd90bad62b32485d18156fbe07dce01fb))
+* **deps-dev:** bump typescript from 5.3.2 to 5.3.3 ([d9811a9](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/d9811a907fe8873ad7d1efc20379ca1c783e0c78))
+* **deps-dev:** bump typescript from 5.3.3 to 5.4.3 ([57943ed](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/57943ed2c979b3ea042db125e56e0b7f661c6443))
+* **deps-dev:** update dependencies ([bf70fff](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/bf70ffff696dba7b1621a0f04fbc926d69ff8d08))
+* **deps:** bump actions/stale from 8 to 9 ([7aea9d5](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/7aea9d52b063e82e3506f6e204a1d204e3f85945))
+* **deps:** bump isolated-vm from 4.6.0 to 4.7.2 ([5de8636](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/5de86367797d8ec8e6d790bc5f614a24904fc76b))
+* **deps:** install jsdoc comment plugin ([30392ff](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/30392ffd02f09586175511e375a65600ddaf297a))
+* **deps:** update isolated-vm ([38ec2ec](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/38ec2ec8b573def105127292b65783a7fec7f768))
+* document correct type of error stack property ([49ad3b8](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/49ad3b884cde1e6683d9d7399ff8fac01a693345))
+* freeze also global object ([7f60889](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/7f60889c5c5b4c9f6642a9cacbe7edf744e03d8e))
+* make sure run function is also frozen ([96c66e9](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/96c66e94a2513416046b392b4f22cd4807bf0dd4))
+* remove method from main exports ([38dfe11](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/38dfe1125c4f69ec79f5393a5a9aa3089d446da4))
+* update readme ([21b9442](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/21b94423c40dee8bafb4121d3eb2c5344027d37b))
+* update stack line offset if script will be wrapped ([5e74c06](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/5e74c06dde1c247d791505e1b63b211860b401bc))
+* use new eslint version and config ([857d695](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/857d695b4e42abf2f69c6b663782057a4e0dec4c))
+
+
+### Refactorings
+
+* add console proxy to global environment ([9ee183f](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/9ee183f009909154d070156aec77537328742666))
+* add script runner to isolated environment always ([1823382](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/18233826c6d7839c32e258e76ff487873274bc5b))
+* call exposed run function to execute userprovided script ([736ba1a](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/736ba1a4c30b85e500dbd0329072ae312ddab986))
+* create dedicate files for running and compiling scripts ([edf34c6](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/edf34c65a674e97fb03f6559015104846b8d20e4))
+* initialize error with values ([38e92aa](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/38e92aaffcbfb25b8ed24da2328899ddcc412bef))
+* initialize variables in oneline ([e6907b3](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/e6907b30d8fd3021331847bd0f73f0c160e571e4))
+* move runtime setup logic to isolate module ([bde5c0b](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/bde5c0b70a2114ded6fdb588ecd820053294e098))
+* name script runner methods ([4e0224a](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/4e0224af02be610329e3975b42206587a2900cd7))
+* pass collectAndReleaseRefs as options to requestor of isolate ([0bccac2](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/0bccac2b0902c5911516e9ba19d8e574056d4bc1))
+* pass only single object to unsafe script ([ccb09e3](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/ccb09e3177064b3c2281faa010f9aed94534f556))
+* rename isolate methods ([a3fa29f](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/a3fa29f6cb404910ae83c29bfd86701f16422e3e))
+* rename local variables of main export ([ae492ac](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/ae492ac30ac7e8e1e937f4a66e7b74dda4699c27))
+* rename runScript to installScript for better clarity ([28024aa](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/28024aa2c3495fd682211c06eb915ddefb5d18a5))
+* rename variable console to logs ([79d73b7](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/79d73b7eccd1128f6e9d79735bdffae3bdb1b2f2))
+* wrap user script in compiler function ([1140bca](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/1140bca1a83da24c3c40a3b476aeec7b20367599))
+
 ## [0.3.0](https://github.com/discue/somewhat-secure-insecure-fn-executor/compare/v0.2.0...v0.3.0) (2023-12-04)
 
 
