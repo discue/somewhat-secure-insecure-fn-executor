@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.1](https://github.com/discue/somewhat-secure-insecure-fn-executor/compare/v0.4.0...v0.4.1) (2024-06-08)
+
+
+### Bug Fixes
+
+* **deps:** mark eslint plugin as dev dependency ([5cbae69](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/5cbae697becb77c4d9e30028caac2132421a9692))
+
+
+### Chores
+
+* ensure types can be created without error ([d408347](https://github.com/discue/somewhat-secure-insecure-fn-executor/commit/d408347e5e25993034d7d346a3f3e89cb9ff7930))
+
 ## [0.4.0](https://github.com/discue/somewhat-secure-insecure-fn-executor/compare/v0.3.0...v0.4.0) (2024-06-08)
 
 
