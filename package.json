@@ -15,7 +15,7 @@
     "push-incl-tags": "git push --follow-tags origin main",
     "publish-npm": "npm publish --access public",
     "remove-types": "find lib -name \"*.d.ts\" -type f -delete",
-    "create-types": "npx tsc lib/index.js --declaration --emitDeclarationOnly --allowJs",
+    "create-types": "npx tsc lib/index.js --declaration --emitDeclarationOnly --allowJs --lib es2022",
     "release-generic": "npm run push-incl-tags && npm run create-types && npm run publish-npm && npm run remove-types",
     "release": "standard-version && npm run release-generic",
     "release-minor": "standard-version --release-as minor && npm run release-generic"
