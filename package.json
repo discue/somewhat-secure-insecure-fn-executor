@@ -33,7 +33,7 @@
     "isolated-vm": "^5.0.1"
   },
   "devDependencies": {
-    "chai": "^4.3.10",
+    "chai": "^5.1.2",
     "eslint": "^9.13.0",
     "eslint-plugin-jsdoc": "^50.4.3",
     "mocha": "^10.8.2",
