@@ -11,7 +11,7 @@ const allowedArrayTypes = ['BigUint64Array', 'BigInt64Array', 'Uint8Array', 'Int
 const allowedTypes = ['BigInt', 'DataView', 'Map', 'Set', 'WeakMap', 'WeakSet', 'Proxy', 'Reflect', 'WeakRef', 'Object', 'Function', 'Array', 'Number', 'Infinity', 'Boolean', 'String', 'Symbol',]
 const allowedErrors = ['Error', 'AggregateError', 'EvalError', 'RangeError', 'ReferenceError', 'SyntaxError', 'TypeError', 'URIError']
 const allowedVariables = ['console', 'global', 'globalThis']
-const allowedObjects = ['FinalizationRegistry', 'Math', 'JSON', 'Atomics', 'WebAssembly', 'Intl', 'SharedArrayBuffer', 'ArrayBuffer', 'Date', 'Promise', 'RegExp']
+const allowedObjects = ['FinalizationRegistry', 'Math', 'Iterator', 'JSON', 'Atomics', 'WebAssembly', 'Intl', 'SharedArrayBuffer', 'ArrayBuffer', 'Date', 'Promise', 'RegExp']
 const allowedFunctions = ['atob', 'btoa', 'encodeURI', 'encodeURIComponent', 'escape', 'unescape', 'eval', 'decodeURI', 'decodeURIComponent', 'isFinite', 'isNaN', 'parseInt', 'parseFloat']
 const allowedGlobals = [...ourOwnGlobalFunctions, ...allowedPrimitives, ...allowedErrors, ...allowedTypes, ...allowedArrayTypes, ...allowedObjects, ...allowedFunctions, ...allowedVariables]
 const vars = Object.getOwnPropertyNames(global).filter(global => !allowedGlobals.includes(global))
@@ -117,7 +117,7 @@ describe('FunctionExecutor', () => {
     })
 
     it('is aware of all v8 globals', async () => {
-        const ignoredValues = ['global', 'globalThis', 'undefined', 'NaN', 'Infinity', 'console']
+        const ignoredValues = ['global', 'globalThis', 'Iterator', 'undefined', 'NaN', 'Infinity', 'console']
         let { result } = await run(`
         return Object.getOwnPropertyNames(global)
         `)
