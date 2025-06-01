@@ -36,7 +36,7 @@
     "chai": "^4.3.10",
     "eslint": "^9.28.0",
     "eslint-plugin-jsdoc": "^50.7.0",
-    "mocha": "^11.1.0",
+    "mocha": "^11.5.0",
     "nodemon": "^3.1.10",
     "nyc": "^17.1.0",
     "standard-version": "^9.5.0",
