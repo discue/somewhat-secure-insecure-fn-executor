@@ -30,7 +30,7 @@
   "author": "Stefan Pfaffel <s.pfaffel@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "isolated-vm": "^6.0.0"
+    "isolated-vm": "^6.0.1"
   },
   "devDependencies": {
     "chai": "^4.3.10",
