@@ -6,26 +6,23 @@ Always reference these instructions first and fallback to search or bash command
 
 ## Working Effectively
 
-**CRITICAL NODE.JS REQUIREMENT**: This project requires Node.js >=22.0.0 due to the `isolated-vm` dependency. NEVER attempt to build with Node.js 20 or earlier versions.
+**CRITICAL NODE.JS REQUIREMENT**: This project requires the latest Node.js LTS version due to the `isolated-vm` dependency. NEVER attempt to build with older versions.
 
 ### Bootstrap, Build, and Test
-- Install Node.js 22+:
-  - `curl -O https://nodejs.org/dist/v22.12.0/node-v22.12.0-linux-x64.tar.xz`
-  - `tar -xf node-v22.12.0-linux-x64.tar.xz`
-  - `export PATH="/tmp/node-v22.12.0-linux-x64/bin:$PATH"` (adjust path as needed)
+- Install the latest Node.js LTS version using your preferred method (nvm, package manager, or official installer)
 - `npm ci` -- installs dependencies including isolated-vm (takes ~3-5 seconds). NEVER CANCEL - Set timeout to 60+ seconds.
 - `npm test` or `./test.sh` -- runs 266 comprehensive tests (takes ~1.5 seconds). NEVER CANCEL - Set timeout to 30+ seconds for safety.
 - `npm run lint` -- runs ESLint on lib/ directory (takes <1 second). NEVER CANCEL - Set timeout to 10+ seconds.
 
 ### Development Workflow
-- `export PATH="/path/to/node22/bin:$PATH"` -- ALWAYS set Node.js 22+ in PATH first
+- Ensure you're using the latest Node.js LTS version (`node --version`)
 - `npm ci` -- install dependencies after any package.json changes (3-5 seconds)
 - `npm test` or `./test.sh` -- run full test suite to validate changes (1.5 seconds)
 - `npm run lint` -- validate code style and JSDoc compliance (<1 second)
 
 ## Validation
 
-- **ALWAYS validate Node.js version first**: `node --version` should show v22.x.x or higher
+- **ALWAYS validate Node.js version first**: `node --version` should show the latest LTS version
 - **ALWAYS run complete test suite** after making any code changes to ensure security features remain intact
 - **ALWAYS test actual functionality** by running a simple test script that exercises the main API:
   ```javascript
@@ -104,7 +101,7 @@ Always reference these instructions first and fallback to search or bash command
 - **Timeout**: CI tests have 5-minute timeout, lints have 10-minute timeout
 
 ### Common Debugging
-- If isolated-vm fails to compile: Verify Node.js version is >=22.0.0
+- If isolated-vm fails to compile: Verify Node.js version is the latest LTS version
 - If tests fail after changes: Check that security restrictions haven't been broken
 - If lint fails: Run `npm run lint` locally to see specific issues
 - If coverage seems broken: Use `npm test` directly rather than `npm run coverage`
